@@ -1,6 +1,13 @@
+using BookManager.API.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.Configure<BookManagerPeriodDaysConfig>(
+    builder.Configuration.GetSection("BookManagerPeriodDaysConfig")
+    );
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
