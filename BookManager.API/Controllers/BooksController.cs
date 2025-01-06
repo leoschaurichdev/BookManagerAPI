@@ -1,4 +1,5 @@
 ﻿using BookManager.API.Models.InputModel;
+using BookManager.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookManager.API.Controllers
@@ -7,10 +8,10 @@ namespace BookManager.API.Controllers
     [Route("api/books")]
     public class BooksController : ControllerBase
     {
-        private readonly IMediator _mediator;
-        public BooksController(IMediator mediator)
+        private readonly IConfigService _config;
+        public BooksController(IConfigService config)
         {
-            _mediator = mediator;
+            _config = config;
         }
         //GET api/books
         [HttpGet]
