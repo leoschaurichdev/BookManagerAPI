@@ -7,6 +7,12 @@ namespace BookManager.API.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
+        private readonly IMediator _mediator;
+        public UsersController(IMediator _mediator)
+        {
+            _mediator = _mediator;
+        }
+
         //POST api/users
 
         [HttpPost]

@@ -7,6 +7,11 @@ namespace BookManager.API.Controllers
     [Route("api/books")]
     public class BooksController : ControllerBase
     {
+        private readonly IMediator _mediator;
+        public BooksController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
         //GET api/books
         [HttpGet]
         public IActionResult GetAll()

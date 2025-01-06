@@ -7,6 +7,11 @@ namespace BookManager.API.Controllers
     [Route("api/loans")]
     public class LoansController : ControllerBase
     {
+        private readonly IMediator _mediator;
+        public LoansController(IMediator _mediator)
+        {
+            _mediator = _mediator;
+        }
 
         //POST api/loans
         [HttpPost]
