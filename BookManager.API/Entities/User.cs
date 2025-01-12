@@ -1,16 +1,20 @@
 ﻿namespace BookManager.API.Entities
 {
-    public class User
+    public class User : BaseEntity
     {
-        public User(int userId, string name, string email)
+        public User(string fullName, string email, DateTime birthDate, bool active)
         {
-            UserId = userId;
-            Name = name;
+
+            FullName = fullName;
             Email = email;
+            BirthDate = birthDate;
+            Active = true;
+
         }
 
-        public int UserId { get; set; }
-        public string Name { get; set; }
+        public string FullName { get; set; }
         public string Email { get; set; }
+        public DateTime BirthDate { get; private set; }
+        public bool Active { get; private set; }
     }
 }

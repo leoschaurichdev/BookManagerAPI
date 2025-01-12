@@ -1,6 +1,7 @@
 ﻿namespace BookManager.API.DbContext
 {
-    public class BookManagerBdContext
+    public class BookManagerDbContext
     {
+
     }
 }
