@@ -2,19 +2,27 @@
 {
     public class User : BaseEntity
     {
-        public User(string fullName, string email, DateTime birthDate, bool active)
+        public User(int userId, string name, string email, DateTime birthDate)
         {
 
             FullName = fullName;
             Email = email;
             BirthDate = birthDate;
-            Active = true;
-
+            Loans = [];
         }
 
         public string FullName { get; set; }
         public string Email { get; set; }
-        public DateTime BirthDate { get; private set; }
-        public bool Active { get; private set; }
+        public DateTime BirthDate { get; set; }
+
+        public List<Loan> Loans { get; set; }
+
+        public void Update (string name, string email, DateTime birthDay)
+        {
+            Name = name;
+            Email = email;
+            BirthDate = birthDay;
+
+        }
     }
 }

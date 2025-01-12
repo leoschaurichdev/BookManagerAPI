@@ -34,6 +34,12 @@ namespace BookManager.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = 1}, model);
         }
 
+        [HttpPut]
+        public IActionResult Put(int id, UpdateBookInputModel model)
+        {
+            return NoContent();
+        }
+
         //DELETE api/books
         [HttpDelete]
         public IActionResult Delete(int id)

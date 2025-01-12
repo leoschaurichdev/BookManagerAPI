@@ -4,8 +4,7 @@ namespace BookManager.API.Entities
 {
     public class Book
     {
-        protected Book() { }
-        public Book(int bookId, string title, string author, string iSBN, int yearPublication, string cover):base()
+        public Book(int bookId, string title, string author, string iSBN, int yearPublication, string cover, string localization)
         {
             BookId = bookId;
             Title = title;
@@ -13,6 +12,8 @@ namespace BookManager.API.Entities
             ISBN = iSBN;
             YearPublication = yearPublication;
             Cover = null;
+            Localization = null;
+            Loans = [];
 
         }
 
@@ -21,8 +22,9 @@ namespace BookManager.API.Entities
         public string  Author { get; set; }
         public string  ISBN { get; set; }
         public int YearPublication { get; set; }
-        public List<BookLoan> BookLoans { get; set; } = new List<BookLoan>();
-        public string? Cover { get; set; }   
+        public string? Cover { get; set; }
+        public string? Localization { get; set; }
+        public List<Loan> Loans { get; set; }
 
     }
 }
