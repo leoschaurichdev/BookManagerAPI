@@ -18,13 +18,13 @@ namespace BookManager.API.Persistence
             builder
                 .Entity<User>(u =>
                 {
-                    u.HasKey(u=>u.UserId);
+                    u.HasKey(u=>u.Id);
                 });
 
             builder
                 .Entity<Book>(b =>
                 {
-                    b.HasKey(b => b.BookId);
+                    b.HasKey(b => b.Id);
                 });
 
             builder

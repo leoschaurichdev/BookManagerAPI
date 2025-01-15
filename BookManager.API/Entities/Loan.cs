@@ -1,6 +1,8 @@
-﻿namespace BookManager.API.Entities
+﻿using System.Buffers.Text;
+
+namespace BookManager.API.Entities
 {
-    public class Loan
+    public class Loan : BaseEntity
     {
         public Loan(int loanId, int userId, int bookId, DateTime loanDay, User user, Book book) : base()
         {

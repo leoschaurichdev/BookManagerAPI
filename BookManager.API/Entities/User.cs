@@ -5,13 +5,12 @@
         public User(int userId, string name, string email, DateTime birthDate)
         {
 
-            FullName = fullName;
             Email = email;
             BirthDate = birthDate;
             Loans = [];
         }
 
-        public string FullName { get; set; }
+        public string Name { get; set; }
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
 

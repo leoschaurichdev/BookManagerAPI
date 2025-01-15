@@ -1,4 +1,5 @@
 ﻿using BookManager.API.Models.InputModel;
+using BookManager.API.Persistence;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookManager.API.Controllers
@@ -7,13 +8,11 @@ namespace BookManager.API.Controllers
     [Route("api/users")]
     public class UsersController : ControllerBase
     {
-        /*private readonly IMediator _mediator;
-        public UsersController(IMediator _mediator)
+        private readonly BookManagerDbContext _context;
+        public UsersController(BookManagerDbContext context)
         {
-            _mediator = _mediator;
+            _context = context;
         }
-        */
-        //POST api/users
 
         [HttpPost]
         public IActionResult Post(CreateUserInputModel model)
