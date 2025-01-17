@@ -21,6 +21,13 @@ namespace BookManager.API.Controllers
         public IActionResult GetAll()
         {
             var books = _context.Books.Where(b => !b.IsDeleted).ToList();
+
+            if (!_context.Books.Any())
+            {
+                return NotFound("Nenhum livro foi encontrado");
+            }
+ 
+
             var model = books.Select(b => new ResultViewModel());
             return Ok();
         }
@@ -29,18 +36,21 @@ namespace BookManager.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var book = _context.Books
-                .Include(b => b.Author)
-                .Include(b=>b.Id)
-                .Include(b=>b.Title)
-                .Include(b=>b.ISBN)
-                .Include(b=>b.YearPublication)
-                .SingleOrDefault(b => b.Id == id);
+ 
+                var book = _context.Books
+                    .SingleOrDefault(b => b.Id == id);
 
-            var model = BookViewModel.FromEntity(book);
+                if (book == null)
+                {
 
-            return CreatedAtAction(nameof(GetById),new { id = 1 }, model);
-        }
+                    return NotFound();
+
+                }
+
+                var model = BookViewModel.FromEntity(book);
+                return Ok(model);
+            }
+
 
         //POST api/books
         [HttpPost]

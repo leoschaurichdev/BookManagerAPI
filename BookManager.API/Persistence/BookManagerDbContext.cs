@@ -19,6 +19,7 @@ namespace BookManager.API.Persistence
                 .Entity<User>(u =>
                 {
                     u.HasKey(u=>u.Id);
+                    u.Property(u => u.Name).IsRequired();
                 });
 
             builder

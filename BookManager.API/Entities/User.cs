@@ -2,12 +2,12 @@
 {
     public class User : BaseEntity
     {
-        public User(int userId, string name, string email, DateTime birthDate)
+        public User(string name, string email, DateTime birthDate)
         {
-
+            Name = name;
             Email = email;
             BirthDate = birthDate;
-            Loans = [];
+            Loans = new List<Loan>();
         }
 
         public string Name { get; set; }
