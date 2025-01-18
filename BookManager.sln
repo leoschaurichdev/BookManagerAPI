@@ -5,6 +5,12 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManager.API", "BookManager.API\BookManager.API.csproj", "{A7E73F2C-C8CA-4204-B204-C45B845F17DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManager.Core", "BookManager.Core\BookManager.Core.csproj", "{6E44755B-0888-4243-9CFD-81D13F2D9D49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManager.Infrastructure", "BookManager.Infrastructure\BookManager.Infrastructure.csproj", "{F9E61860-3DEB-4A5B-B71A-F6C92A6CA2A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookManager.Application", "BookManager.Application\BookManager.Application.csproj", "{1F86AB60-37E0-4555-B599-911B398219BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{A7E73F2C-C8CA-4204-B204-C45B845F17DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7E73F2C-C8CA-4204-B204-C45B845F17DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7E73F2C-C8CA-4204-B204-C45B845F17DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E44755B-0888-4243-9CFD-81D13F2D9D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E44755B-0888-4243-9CFD-81D13F2D9D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E44755B-0888-4243-9CFD-81D13F2D9D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E44755B-0888-4243-9CFD-81D13F2D9D49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9E61860-3DEB-4A5B-B71A-F6C92A6CA2A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9E61860-3DEB-4A5B-B71A-F6C92A6CA2A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9E61860-3DEB-4A5B-B71A-F6C92A6CA2A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9E61860-3DEB-4A5B-B71A-F6C92A6CA2A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F86AB60-37E0-4555-B599-911B398219BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F86AB60-37E0-4555-B599-911B398219BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F86AB60-37E0-4555-B599-911B398219BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F86AB60-37E0-4555-B599-911B398219BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

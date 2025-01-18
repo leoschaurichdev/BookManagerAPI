@@ -1,9 +1,7 @@
-﻿using BookManager.API.Models.InputModel;
-using BookManager.API.Models.ViewModel;
-using BookManager.API.Persistence;
-using BookManager.API.Services;
+﻿using BookManager.Application.Models.InputModel;
+using BookManager.Application.Models.ViewModel;
+using BookManager.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BookManager.API.Controllers
 {

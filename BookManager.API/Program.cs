@@ -1,5 +1,5 @@
-using BookManager.API.Persistence;
-using BookManager.API.Services;
+using BookManager.Application.Services;
+using BookManager.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
