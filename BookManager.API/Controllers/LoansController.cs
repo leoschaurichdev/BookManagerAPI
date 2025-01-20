@@ -21,13 +21,15 @@ namespace BookManager.API.Controllers
         {
             var user = _context.Users.Find(model.IdUser);
             var book = _context.Books.Find(model.IdBook);
+            var LoanDay = model.LoanDate;
+
 
             if (user == null || book == null)
             {
                 return BadRequest("User or Book not found.");
             }
 
-            var loan = new Loan(model.LoanDate, user, book);
+            var loan = new Loan(user, book, LoanDay);
 
             _context.Loans.Add(loan);
             _context.SaveChanges();

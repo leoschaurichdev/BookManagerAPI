@@ -5,15 +5,17 @@ namespace BookManager.Application.Models.ViewModel
     public class BookViewModel
     {
 
-        public BookViewModel(string title, string author, string iSBN, int yearPublication)
+        public BookViewModel(int id, string title, string author, string iSBN, int yearPublication, string localization)
         {
-
+            id = id;
             Title = title;
             Author = author;
             ISBN = iSBN;
             YearPublication = yearPublication;
+            Localization = localization;
         }
 
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Author { get; set; }
@@ -23,6 +25,6 @@ namespace BookManager.Application.Models.ViewModel
         public string Localization { get; set; }
         public List<string> BookLoans { get; set; }
         public static BookViewModel FromEntity(Book entity)
-    => new(entity.Title, entity.Author, entity.ISBN, entity.YearPublication);
+    => new(entity.Id, entity.Title, entity.Author, entity.ISBN, entity.YearPublication, entity.Localization);
     }
 }

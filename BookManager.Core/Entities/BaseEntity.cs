@@ -4,6 +4,7 @@
     {
         protected BaseEntity()
         {
+            Id = Id;
             CreatedAt = DateTime.Now;
             UpdateAt = null;
             IsDeleted = false;

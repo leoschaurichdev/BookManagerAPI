@@ -1,5 +1,4 @@
 ﻿using BookManager.Core.Enums;
-using System.Buffers.Text;
 
 namespace BookManager.Core.Entities
 {
@@ -7,14 +6,15 @@ namespace BookManager.Core.Entities
     {
 
 
-    public Loan(DateTime loanDay, User user, Book book) : base()
+    public Loan(User user, Book book, DateTime loanDay) : base()
         {
 
-            LoanDay = DateTime.Now;
             User = user;
             Book = book;
             LoanStatus = LoanStatus.Active;
             LoanSituation = LoanSituation.Current;
+            LoanDay = DateTime.Today;
+
         }
 
         public Loan()
@@ -31,7 +31,6 @@ namespace BookManager.Core.Entities
         public List<BookLoan> BookLoans { get; set; } = new List<BookLoan>();
         public LoanStatus LoanStatus { get; private set; }
         public LoanSituation LoanSituation { get; private set; }
-
         public void StartLoan()
         {
 

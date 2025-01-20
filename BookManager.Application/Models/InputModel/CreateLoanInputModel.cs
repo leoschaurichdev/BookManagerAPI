@@ -6,7 +6,7 @@
         {
             IdBook = idBook;
             IdUser = idUser;
-            LoanDate = loanDate;
+            LoanDate = DateTime.Today;
         }
 
         public int IdBook { get; set; }

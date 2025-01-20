@@ -2,7 +2,8 @@
 {
     public class UpdateBookInputModel
     {
-        public string Cover {  get; set; }
+        public int Id { get; set; }
+        public string Cover { get; set; }
         public string Localization { get; set; }
     }
 }
