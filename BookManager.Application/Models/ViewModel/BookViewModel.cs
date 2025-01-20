@@ -7,7 +7,7 @@ namespace BookManager.Application.Models.ViewModel
 
         public BookViewModel(int id, string title, string author, string iSBN, int yearPublication, string localization)
         {
-            id = id;
+            Id = id;
             Title = title;
             Author = author;
             ISBN = iSBN;
