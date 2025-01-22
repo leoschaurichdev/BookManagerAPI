@@ -11,4 +11,9 @@
     <ProjectReference Include="..\BookManager.Infrastructure\BookManager.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
 </Project>

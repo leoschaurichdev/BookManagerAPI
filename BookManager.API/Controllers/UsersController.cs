@@ -1,4 +1,5 @@
 ﻿using BookManager.Application.Models.InputModel;
+using BookManager.Application.Services;
 using BookManager.Core.Entities;
 using BookManager.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,11 @@ namespace BookManager.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly BookManagerDbContext _context;
-        public UsersController(BookManagerDbContext context)
+        private readonly IUserService _service;
+        public UsersController(BookManagerDbContext context, IUserService service)
         {
             _context = context;
+            _service = service;
         }
 
 

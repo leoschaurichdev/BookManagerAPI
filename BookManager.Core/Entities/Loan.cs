@@ -50,6 +50,7 @@ namespace BookManager.Core.Entities
             }
 
             BookLoan bookLoan = BookLoans.Find(x => x.BookId == BookId && x.LoanId == LoanId);
+
             bookLoan.ReturnDate = DateTime.Now;
         }
     }

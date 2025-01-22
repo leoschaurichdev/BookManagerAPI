@@ -1,4 +1,5 @@
 ﻿using BookManager.Application.Models.InputModel;
+using BookManager.Application.Services;
 using BookManager.Core.Entities;
 using BookManager.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,11 @@ namespace BookManager.API.Controllers
     public class LoansController : ControllerBase
     {
         private readonly BookManagerDbContext _context;
-        public LoansController(BookManagerDbContext context) 
+        private readonly ILoanService _service;
+        public LoansController(BookManagerDbContext context, ILoanService service) 
         {
             _context = context;
+            _service = service;
         }
 
         //POST api/loans
