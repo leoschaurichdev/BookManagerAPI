@@ -7,7 +7,6 @@ namespace BookManager.Application.Models.InputModel
         public int Id { get; set; }
         public string Cover { get; set; }
         public string Localization { get; set; }
-        public LoanSituation Situation { get; set; }
-        public LoanStatus Status { get; set; }
+
     }
 }

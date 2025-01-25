@@ -1,6 +1,9 @@
-﻿using BookManager.Application.Models.InputModel;
-using BookManager.Application.Services;
-using BookManager.Infrastructure.Persistence;
+﻿using BookManager.Application.Commands.DeleteBook;
+using BookManager.Application.Commands.InsertBook;
+using BookManager.Application.Commands.UpdateBook;
+using BookManager.Application.Queries.GetAllBook;
+using BookManager.Application.Queries.GetByIdBook;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookManager.API.Controllers
@@ -9,51 +12,58 @@ namespace BookManager.API.Controllers
     [Route("api/books")]
     public class BooksController : ControllerBase
     {
-        private readonly BookManagerDbContext _context;
-        private readonly IBookService _service;
-        public BooksController(BookManagerDbContext context, IBookService service)
+        
+        private readonly IMediator _mediator;
+        public BooksController(IMediator mediator)
         {
-            _context = context;
-            _service = service;
+            
+            _mediator = mediator;
         }
         //GET api/books
        
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> Get()
         {
        
-            var result = _service.GetAll();
+            //var result = _service.GetAll();
+
+            var query = new GetAllBookQuery();
+
+            var result = await _mediator.Send(query);
+
             return Ok(result);
 
         }
 
         //GET api/books/1
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-         
-            var result = _service.GetById(id);
+            
+            var result = await _mediator.Send(new GetBookByIdQuery(id));
+
+            if(!result.IsSucess)
+            {
+                return BadRequest(result.Message);
+            }
+
             return Ok(result);
 
         }
 
         //POST api/books
         [HttpPost]
-        public IActionResult Post(CreateBookInputModel model)
+        public async Task<IActionResult>  Post(InsertBookCommand command)
         {
-            var result = _service.Insert(model);
+            var result = await _mediator.Send(command);
 
-            return CreatedAtAction(
-                nameof(GetById),
-                new { id = result.Data },
-                result
-            );
+            return CreatedAtAction(nameof(GetById), new { id = result.Data}, result);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(int id, UpdateBookInputModel model)
+        public async Task<IActionResult> Put(int id, UpdateBookCommand command)
         {
-            var result = _service.Update(model);
+            var result = await _mediator.Send(command);
 
             if (!result.IsSucess)
             {
@@ -65,9 +75,9 @@ namespace BookManager.API.Controllers
 
         //DELETE api/books
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var result = _service.Delete(id);
+            var result = await _mediator.Send(new DeleteBookCommand(id));
 
             if (!result.IsSucess)
             {

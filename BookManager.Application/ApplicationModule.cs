@@ -1,10 +1,6 @@
-﻿using BookManager.Application.Services;
+﻿using BookManager.Application.Commands.InsertBook;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BookManager.Application
 {
@@ -12,13 +8,15 @@ namespace BookManager.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddServices();
+            services.AddHandlers();
             return services;
         }
+              
 
-        private static IServiceCollection AddServices(this IServiceCollection services)
+        private static IServiceCollection AddHandlers(this IServiceCollection services)
         {
-            services.AddScoped<IBookService, BookService>();
+            services.AddMediatR(config => 
+                config.RegisterServicesFromAssemblyContaining<InsertBookCommand>());
             return services;
         }
     }

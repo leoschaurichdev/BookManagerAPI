@@ -1,7 +1,7 @@
-﻿using BookManager.Application.Models.InputModel;
-using BookManager.Application.Services;
-using BookManager.Core.Entities;
+﻿using BookManager.Application.Commands.InsertLoan;
+using BookManager.Application.Models.InputModel;
 using BookManager.Infrastructure.Persistence;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookManager.API.Controllers
@@ -10,50 +10,27 @@ namespace BookManager.API.Controllers
     [Route("api/loans")]
     public class LoansController : ControllerBase
     {
-        private readonly BookManagerDbContext _context;
-        private readonly ILoanService _service;
-        public LoansController(BookManagerDbContext context, ILoanService service) 
+        private readonly IMediator _mediator;
+        
+        public LoansController(IMediator mediator) 
         {
-            _context = context;
-            _service = service;
+            _mediator = mediator;
+            
         }
 
         //POST api/loans
         [HttpPost]
-        public IActionResult Post(CreateLoanInputModel model)
+        public async Task<IActionResult> Post(InsertLoanCommand command)
         {
-            var user = _context.Users.Find(model.IdUser);
-            var book = _context.Books.Find(model.IdBook);
-            var LoanDay = model.LoanDate;
-
-
-            if (user == null || book == null)
-            {
-                return BadRequest("User or Book not found.");
-            }
-
-            var loan = new Loan(user, book, LoanDay);
-
-            _context.Loans.Add(loan);
-            _context.SaveChanges();
-
-            return Ok(loan);
+            var result = await _mediator.Send(command);
+            return CreatedAtAction("Post", new { id = result.Data }, result);
         }
 
         //PUT api/loans/1/startloan
         [HttpPut("{id}/startloan")]
         public IActionResult StartLoan(int id)
         {
-            var loan = _context.Loans.Find(id);
-
-            if (loan == null)
-            {
-                return NotFound();
-            }
-
-            loan.StartLoan();
-            _context.SaveChanges();
-            return NoContent();
+            return Ok();
         }
 
 
@@ -62,11 +39,7 @@ namespace BookManager.API.Controllers
         [HttpPut("{id}/finishloan")]
         public IActionResult FinishLoan(int id)
         {
-
-            var loan = _context.Loans.Find(id);
-            loan.FinishLoan();
-            _context.SaveChanges();
-            return NoContent();
+            return Ok();
         }
     }
 }

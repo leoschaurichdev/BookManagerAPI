@@ -11,6 +11,8 @@
         }
 
         public int Id { get; private set; }
+        public User User { get; private set; }
+        public Book Book { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdateAt { get; set; }
         public bool IsDeleted { get; private set; }

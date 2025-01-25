@@ -15,7 +15,7 @@ namespace BookManager.Application.Models.InputModel
         public int IdUser { get; set; }
         public DateTime LoanDate { get; set; }
 
-        public Loan ToEntity(User user, Book book) => new(user, book, LoanDate);
+        public Loan ToEntity(User user, Book book, DateTime LoanDate) => new(user, book, LoanDate);
 
 
     }
