@@ -16,33 +16,29 @@ namespace BookManager.Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-                .Entity<User>(u =>
+                .Entity<User>(x =>
                 {
-                    u.HasKey(u=>u.Id);
-                    u.Property(u => u.Name).IsRequired();
+                    x.HasKey(x => x.Id);
                 });
-
             builder
-                .Entity<Book>(b =>
+                .Entity<Book>(x =>
                 {
-                    b.HasKey(b => b.Id);
+                    x.HasKey(x => x.Id);
                 });
-
             builder
-                .Entity<Loan>(l =>
+                .Entity<Loan>(x =>
                 {
-                    l.HasKey(l => l.LoanId);
+                    x.HasKey(x => x.Id);
 
-                    l.HasOne(l=>l.User)
-                    .WithMany(l=>l.Loans)
-                    .HasForeignKey(l=>l.UserId)
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                    l.HasOne(l =>l.Book)
-                        .WithMany(l=>l.Loans)
-                        .HasForeignKey(l=>l.BookId)
+                    x.HasOne(x => x.User)
+                        .WithMany(x => x.Loans)
+                        .HasForeignKey(x => x.UserId)
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    x.HasOne(x => x.Book)
+                        .WithMany(x => x.Loans)
+                        .HasForeignKey(x => x.BookId)
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             base.OnModelCreating(builder);

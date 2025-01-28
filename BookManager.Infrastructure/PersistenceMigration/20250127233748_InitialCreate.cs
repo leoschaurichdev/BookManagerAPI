@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BookManager.Infrastructure.PersitenceMigration
+namespace BookManager.Infrastructure.PersistenceMigration
 {
     /// <inheritdoc />
-    public partial class FirstMigration : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +22,7 @@ namespace BookManager.Infrastructure.PersitenceMigration
                     ISBN = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     YearPublication = table.Column<int>(type: "int", nullable: false),
                     Cover = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Localization = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Localization = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -54,21 +54,21 @@ namespace BookManager.Infrastructure.PersitenceMigration
                 name: "Loans",
                 columns: table => new
                 {
-                    LoanId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    LoanId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     BookId = table.Column<int>(type: "int", nullable: false),
                     LoanDay = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LoanStatus = table.Column<int>(type: "int", nullable: false),
                     LoanSituation = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Loans", x => x.LoanId);
+                    table.PrimaryKey("PK_Loans", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Loans_Books_BookId",
                         column: x => x.BookId,
@@ -82,47 +82,6 @@ namespace BookManager.Infrastructure.PersitenceMigration
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "BookLoan",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookId = table.Column<int>(type: "int", nullable: false),
-                    LoanId = table.Column<int>(type: "int", nullable: false),
-                    LoanDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BookLoan", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BookLoan_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_BookLoan_Loans_LoanId",
-                        column: x => x.LoanId,
-                        principalTable: "Loans",
-                        principalColumn: "LoanId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BookLoan_BookId",
-                table: "BookLoan",
-                column: "BookId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BookLoan_LoanId",
-                table: "BookLoan",
-                column: "LoanId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Loans_BookId",
@@ -138,9 +97,6 @@ namespace BookManager.Infrastructure.PersitenceMigration
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "BookLoan");
-
             migrationBuilder.DropTable(
                 name: "Loans");
 

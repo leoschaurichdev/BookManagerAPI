@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BookManager.Infrastructure.PersitenceMigration
+namespace BookManager.Infrastructure.PersistenceMigration
 {
     [DbContext(typeof(BookManagerDbContext))]
-    [Migration("20250118222507_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20250127233748_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,7 @@ namespace BookManager.Infrastructure.PersitenceMigration
                         .HasColumnType("bit");
 
                     b.Property<string>("Localization")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -68,7 +69,7 @@ namespace BookManager.Infrastructure.PersitenceMigration
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("BookManager.Core.Entities.BookLoan", b =>
+            modelBuilder.Entity("BookManager.Core.Entities.Loan", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,49 +86,11 @@ namespace BookManager.Infrastructure.PersitenceMigration
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("LoanDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("LoanId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ReturnDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdateAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("LoanId");
-
-                    b.ToTable("BookLoan");
-                });
-
-            modelBuilder.Entity("BookManager.Core.Entities.Loan", b =>
-                {
-                    b.Property<int>("LoanId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LoanId"));
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("LoanDay")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("LoanId")
+                        .HasColumnType("int");
 
                     b.Property<int>("LoanSituation")
                         .HasColumnType("int");
@@ -141,7 +104,7 @@ namespace BookManager.Infrastructure.PersitenceMigration
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("LoanId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BookId");
 
@@ -183,25 +146,6 @@ namespace BookManager.Infrastructure.PersitenceMigration
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BookManager.Core.Entities.BookLoan", b =>
-                {
-                    b.HasOne("BookManager.Core.Entities.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BookManager.Core.Entities.Loan", "Loan")
-                        .WithMany("BookLoans")
-                        .HasForeignKey("LoanId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Loan");
-                });
-
             modelBuilder.Entity("BookManager.Core.Entities.Loan", b =>
                 {
                     b.HasOne("BookManager.Core.Entities.Book", "Book")
@@ -224,11 +168,6 @@ namespace BookManager.Infrastructure.PersitenceMigration
             modelBuilder.Entity("BookManager.Core.Entities.Book", b =>
                 {
                     b.Navigation("Loans");
-                });
-
-            modelBuilder.Entity("BookManager.Core.Entities.Loan", b =>
-                {
-                    b.Navigation("BookLoans");
                 });
 
             modelBuilder.Entity("BookManager.Core.Entities.User", b =>

@@ -23,7 +23,7 @@ namespace BookManager.API.Controllers
         {
             var result = await _mediator.Send(new GetUserByIdQuery(id));
 
-            if (!result.IsSucess)
+            if (!result.IsSuccess)
             {
                 return BadRequest(result.Message);
             }

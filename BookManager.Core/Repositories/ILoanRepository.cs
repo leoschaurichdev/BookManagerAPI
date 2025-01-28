@@ -1,5 +1,4 @@
-﻿
-using BookManager.Core.Entities;
+﻿using BookManager.Core.Entities;
 
 namespace BookManager.Core.Repositories
 {
@@ -7,7 +6,6 @@ namespace BookManager.Core.Repositories
     {
         Task<Loan?> GetById(int id);
         Task<int> Add(Loan loan);
-        Task StartLoan(Loan loan);
         Task FinishLoan(Loan loan);
 
 

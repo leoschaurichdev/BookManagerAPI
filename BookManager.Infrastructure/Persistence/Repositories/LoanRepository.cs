@@ -16,22 +16,23 @@ namespace BookManager.Infrastructure.Persistence.Repositories
         {
             await _context.Loans.AddAsync(loan);
             await _context.SaveChangesAsync();
-            return loan.LoanId;
+            return loan.Id;
         }
 
-        public Task FinishLoan(Loan loan)
+        public async Task FinishLoan(Loan loan)
         {
-            throw new NotImplementedException();
+            loan.FinishLoan();
+            _context.Loans.Update(loan);
+
+            await _context.SaveChangesAsync();
         }
 
-        public Task StartLoan(Loan loan)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public async Task<Loan?> GetById(int id)
         {
-           return await _context.Loans.SingleOrDefaultAsync(x => x.LoanId == id);
+           return await _context.Loans.SingleOrDefaultAsync(x => x.Id == id);
+
         }
     }
 }

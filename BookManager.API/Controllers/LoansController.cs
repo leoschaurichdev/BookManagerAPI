@@ -1,6 +1,5 @@
-﻿using BookManager.Application.Commands.InsertLoan;
-using BookManager.Application.Models.InputModel;
-using BookManager.Infrastructure.Persistence;
+﻿using BookManager.Application.Commands.FinishLoan;
+using BookManager.Application.Commands.InsertLoan;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,26 +19,25 @@ namespace BookManager.API.Controllers
 
         //POST api/loans
         [HttpPost]
-        public async Task<IActionResult> Post(InsertLoanCommand command)
+        public async Task<IActionResult> Post([FromBody] InsertLoanCommand command)
         {
-            var result = await _mediator.Send(command);
-            return CreatedAtAction("Post", new { id = result.Data }, result);
+                await _mediator.Send(command);
+                return NoContent();
         }
-
-        //PUT api/loans/1/startloan
-        [HttpPut("{id}/startloan")]
-        public IActionResult StartLoan(int id)
-        {
-            return Ok();
-        }
-
-
 
         //PUT api/loans/1/loancomplete
         [HttpPut("{id}/finishloan")]
-        public IActionResult FinishLoan(int id)
+        public async Task<IActionResult> FinishLoan(int id)
         {
-            return Ok();
+            var command = new FinishLoanCommand (id);
+            var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return NoContent();
         }
     }
 }

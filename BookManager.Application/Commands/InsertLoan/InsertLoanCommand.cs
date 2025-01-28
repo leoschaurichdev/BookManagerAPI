@@ -1,5 +1,4 @@
 ﻿using BookManager.Application.Models.ViewModel;
-using BookManager.Core.Entities;
 using MediatR;
 
 namespace BookManager.Application.Commands.InsertLoan
@@ -10,6 +9,11 @@ namespace BookManager.Application.Commands.InsertLoan
         public int IdUser { get; set; }
         public DateTime LoanDate { get; set; }
 
-       
+        public void GetDate()
+        {
+            LoanDate = DateTime.Now;
+        }
+
+
     }
 }

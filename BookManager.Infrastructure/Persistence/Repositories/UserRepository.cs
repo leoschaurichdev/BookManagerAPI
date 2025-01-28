@@ -1,5 +1,6 @@
 ﻿using BookManager.Core.Entities;
 using BookManager.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookManager.Infrastructure.Persistence.Repositories
 {
@@ -18,9 +19,9 @@ namespace BookManager.Infrastructure.Persistence.Repositories
             return user.Id;
         }
 
-        Task<User?> IUserRepository.GetById(int id)
+        public async Task<User?> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Users.SingleOrDefaultAsync(x => x.Id == id);
         }
     }
 }

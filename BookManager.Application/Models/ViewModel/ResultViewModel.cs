@@ -2,16 +2,19 @@
 {
     public class ResultViewModel
     {
-        public ResultViewModel(bool isSucess = true, string message = "")
+        public ResultViewModel(bool isSuccess = true, string message = "")
         {
-            IsSucess = isSucess;
+            IsSuccess = isSuccess;
             Message = message;
         }
 
-        public bool IsSucess { get; set; }
-        public string Message { get; set; }
-        public static ResultViewModel Sucess() => new();
-        public static ResultViewModel Error(string message) => new(false, message);
+        public bool IsSuccess { get; private set; }
+        public string Message { get; private set; }
+
+        public static ResultViewModel Success()
+            => new();
+        public static ResultViewModel Error(string message)
+            => new(false, message);
     }
 
     public class ResultViewModel<T> : ResultViewModel

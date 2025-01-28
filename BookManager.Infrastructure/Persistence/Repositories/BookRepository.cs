@@ -1,5 +1,4 @@
-﻿
-using BookManager.Core.Entities;
+﻿using BookManager.Core.Entities;
 using BookManager.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 

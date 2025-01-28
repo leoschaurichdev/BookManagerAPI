@@ -4,15 +4,15 @@ namespace BookManager.Application.Models.ViewModel
 {
     public class LoanViewModel
     {
-        public LoanViewModel(int userId, int bookId)
+        public LoanViewModel(int idUser, int idBook)
         {
-            UserId = userId;
-            BookId = BookId;
+            IdUser = idUser;
+            IdBook = idBook;
             LoanDate = DateTime.Now;
 
         }
-        public int UserId { get; set; }
-        public int BookId { get; set; }
+        public int IdUser { get; set; }
+        public int IdBook { get; set; }
         public DateTime LoanDate { get; set; }
 
         public static LoanViewModel FromEntity(Loan entity)

@@ -26,7 +26,7 @@ namespace BookManager.Application.Commands.UpdateBook
 
             await _repository.Update(book);
 
-            return ResultViewModel.Sucess();
+            return ResultViewModel.Success();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace BookManager.Application.Commands.DeleteBook
             }
 
             await _repository.Delete(book.Id);
-            return ResultViewModel.Sucess();
+            return ResultViewModel.Success();
         }
     }
 }

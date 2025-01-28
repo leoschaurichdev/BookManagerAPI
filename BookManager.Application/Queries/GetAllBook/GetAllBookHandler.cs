@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookManager.Application.Queries.GetAllBook
 {
-   
+
     public class GetAllBookHandler : IRequestHandler<GetAllBookQuery, ResultViewModel<List<BookViewModel>>>
     {
         private readonly BookManagerDbContext _context;

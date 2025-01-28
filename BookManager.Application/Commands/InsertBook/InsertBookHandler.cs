@@ -1,11 +1,10 @@
 ﻿using BookManager.Application.Models.ViewModel;
 using BookManager.Core.Repositories;
-using BookManager.Infrastructure.Persistence;
 using MediatR;
 
 namespace BookManager.Application.Commands.InsertBook
 {
-     public class InsertBookHandler : IRequestHandler<InsertBookCommand, ResultViewModel<int>>
+    public class InsertBookHandler : IRequestHandler<InsertBookCommand, ResultViewModel<int>>
      {
         private readonly IBookRepository _repository;
         public InsertBookHandler(IBookRepository repository)

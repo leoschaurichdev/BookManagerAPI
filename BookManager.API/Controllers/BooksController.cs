@@ -42,7 +42,7 @@ namespace BookManager.API.Controllers
             
             var result = await _mediator.Send(new GetBookByIdQuery(id));
 
-            if(!result.IsSucess)
+            if(!result.IsSuccess)
             {
                 return BadRequest(result.Message);
             }
@@ -65,7 +65,7 @@ namespace BookManager.API.Controllers
         {
             var result = await _mediator.Send(command);
 
-            if (!result.IsSucess)
+            if (!result.IsSuccess)
             {
                 return BadRequest(result.Message);
             }
@@ -79,7 +79,7 @@ namespace BookManager.API.Controllers
         {
             var result = await _mediator.Send(new DeleteBookCommand(id));
 
-            if (!result.IsSucess)
+            if (!result.IsSuccess)
             {
                 return BadRequest(result.Message);
             }
