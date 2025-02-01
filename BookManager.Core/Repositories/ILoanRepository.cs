@@ -7,6 +7,7 @@ namespace BookManager.Core.Repositories
         Task<Loan?> GetById(int id);
         Task<int> Add(Loan loan);
         Task FinishLoan(Loan loan);
+        Task UpdateLateLoan(Loan loan);
 
 
     }

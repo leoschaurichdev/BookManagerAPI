@@ -43,6 +43,7 @@ namespace BookManager.Infrastructure.Persistence.Repositories
 
         public async Task Update(Book book)
         {
+            
             _context.Books.Update(book);
             await _context.SaveChangesAsync();
         }

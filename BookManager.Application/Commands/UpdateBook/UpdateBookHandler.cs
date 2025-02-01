@@ -22,6 +22,8 @@ namespace BookManager.Application.Commands.UpdateBook
                 return ResultViewModel.Error("Book not found");
             }
 
+            book.UpdateAt = DateTime.Now;
+
             book.Update(request.Cover, request.Localization);
 
             await _repository.Update(book);

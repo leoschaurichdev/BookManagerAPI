@@ -15,7 +15,7 @@ namespace BookManager.Application.Queries.GetAllBook
         }
         public async Task<ResultViewModel<List<BookViewModel>>> Handle(GetAllBookQuery request, CancellationToken cancellationToken)
         {
-            var books = await _context.Books.ToListAsync();
+            var books = await _context.Books.Where(b => !b.IsDeleted).ToListAsync();
             var model = books.Select(BookViewModel.FromEntity).ToList();
             return ResultViewModel<List<BookViewModel>>.Success(model);
         }

@@ -33,21 +33,12 @@ namespace BookManager.Core.Entities
         {
             LoanStatus = LoanStatus.Inactive;
             UpdateAt = DateTime.Now;
-
-            if (LoanDay.AddDays(7) < DateTime.Now)
-            {
-                LoanSituation = LoanSituation.Delayed;
-            }
-            
-            
-            
         }
 
-        public void SumNumber()
+        public void LateLoan()
         {
-            int num = 0;
-
-            LoanId = num++;
+            LoanSituation = LoanSituation.Delayed;
         }
+       
     }
 }

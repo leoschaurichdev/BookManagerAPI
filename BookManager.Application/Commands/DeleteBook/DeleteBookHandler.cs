@@ -1,6 +1,7 @@
 ﻿using BookManager.Application.Models.ViewModel;
 using BookManager.Core.Repositories;
 using MediatR;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 
 namespace BookManager.Application.Commands.DeleteBook
@@ -22,6 +23,8 @@ namespace BookManager.Application.Commands.DeleteBook
             {
                 return ResultViewModel.Error("Livro não encontrado");
             }
+
+            book.SetAsDeleted();
 
             await _repository.Delete(book.Id);
             return ResultViewModel.Success();

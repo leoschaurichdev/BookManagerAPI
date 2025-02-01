@@ -34,5 +34,19 @@ namespace BookManager.Infrastructure.Persistence.Repositories
            return await _context.Loans.SingleOrDefaultAsync(x => x.Id == id);
 
         }
+
+        public async Task UpdateLateLoan(Loan loan)
+        {
+            var existingLoan = await _context.Loans.SingleOrDefaultAsync(x => x.Id == loan.Id);
+            
+            if (existingLoan is null)
+            {
+               
+            }
+             
+                
+                await _context.SaveChangesAsync();
+            }
+        }
     }
-}
+
