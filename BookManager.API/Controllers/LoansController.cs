@@ -1,7 +1,7 @@
 ﻿using BookManager.Application.Commands.FinishLoan;
 using BookManager.Application.Commands.InsertLoan;
 using BookManager.Application.Commands.UpdateLateLoan;
-using BookManager.Core.Enums;
+using BookManager.Application.Queries.GetAllLoan;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,12 +21,29 @@ namespace BookManager.API.Controllers
 
         //TODO
         //GETALL LOANS
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var query = new GetAllLoanQuery();
+            var result = await _mediator.Send(query);
+            if (result.IsSuccess)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.Message);
+        }
 
         //POST api/loans
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] InsertLoanCommand command)
         {
-                await _mediator.Send(command);
+                var result = await _mediator.Send(command);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
                 return NoContent();
         }
 

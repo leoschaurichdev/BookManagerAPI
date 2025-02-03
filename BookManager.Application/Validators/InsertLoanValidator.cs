@@ -1,10 +1,5 @@
 ﻿using BookManager.Application.Commands.InsertLoan;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookManager.Application.Validators
 {
@@ -25,9 +20,14 @@ namespace BookManager.Application.Validators
                 .WithMessage("LoanDate must be in the future");
             RuleFor(x => x.LoanDate)
                 .NotEmpty()
-                .WithMessage("LoanDate is required")
-                .Must((command, returnDate) => IsValidReturnDate(command.LoanDate, command.LoanDate))
-                .WithMessage("ReturnDate must be after LoanDate");
+                .WithMessage("LoanDate is required");
+
+            RuleFor(x => x.LoanDate)
+                .NotEmpty()
+                .WithMessage("ReturnDate is required")
+                .Must(loanDate => loanDate <= DateTime.Now.AddDays(1))
+                .WithMessage("LoanDate cannot be in the future");
+
         }
         private bool IsValidLoanDate(DateTime loanDate)
         {

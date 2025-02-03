@@ -27,7 +27,11 @@ namespace BookManager.Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
-        
+        public async Task<IEnumerable<Loan>> GetAll()
+        {
+            var loans = await _context.Loans.ToListAsync();
+            return loans;
+        }
 
         public async Task<Loan?> GetById(int id)
         {
@@ -43,8 +47,6 @@ namespace BookManager.Infrastructure.Persistence.Repositories
             {
                
             }
-             
-                
                 await _context.SaveChangesAsync();
             }
         }

@@ -25,9 +25,15 @@ namespace BookManager.Application.Commands.InsertLoan
             var user = await _userRepository.GetById(request.IdUser);
            
 
+
             if (book == null || user == null)
             {
                 return ResultViewModel<int>.Error("Book or User not found");
+            }
+
+            if (book.IsDeleted)
+            {
+                return ResultViewModel<int>.Error("Book is deleted");
             }
 
             Loan loan = new Loan(user, book, request.LoanDate);

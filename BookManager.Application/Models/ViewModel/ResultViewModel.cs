@@ -19,7 +19,7 @@
 
     public class ResultViewModel<T> : ResultViewModel
     {
-        public ResultViewModel(T? data, bool isSuccess = true, string message = "")
+        public ResultViewModel(T? data, bool isSuccess = true, string message = "success in sending data")
             : base(isSuccess, message)
         {
             Data = data;

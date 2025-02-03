@@ -19,20 +19,16 @@ namespace BookManager.API.Controllers
             
             _mediator = mediator;
         }
+
         //GET api/books
-       
         [HttpGet]
         public async Task<IActionResult> Get()
-        {
-       
+        {  
             //var result = _service.GetAll();
 
             var query = new GetAllBookQuery();
-
             var result = await _mediator.Send(query);
-
             return Ok(result);
-
         }
 
         //GET api/books/1
@@ -48,7 +44,6 @@ namespace BookManager.API.Controllers
             }
 
             return Ok(result);
-
         }
 
         //POST api/books
@@ -86,8 +81,5 @@ namespace BookManager.API.Controllers
 
             return NoContent();
         }
-
-
-
     }
 }
