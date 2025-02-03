@@ -1,8 +1,6 @@
 ﻿using BookManager.Application.Models.ViewModel;
 using BookManager.Core.Repositories;
-using BookManager.Infrastructure.Persistence;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace BookManager.Application.Queries.GetAllBook
 {
