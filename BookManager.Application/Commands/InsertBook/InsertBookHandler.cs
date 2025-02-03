@@ -15,9 +15,9 @@ namespace BookManager.Application.Commands.InsertBook
         {
          var book = request.ToEntity();
 
-         await _repository.Add(book);
+         var id = await _repository.Add(book);
 
-         return ResultViewModel<int>.Success(book.Id);
+         return ResultViewModel<int>.Success(id);
         }
     }
 }
