@@ -10,7 +10,6 @@ namespace BookManager.Application.Queries.GetUserById
             Id = id;
         }
 
-
         public int Id { get; set; }
     }
 }

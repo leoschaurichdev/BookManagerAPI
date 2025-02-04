@@ -2,7 +2,6 @@
 using BookManager.Application.Models.ViewModel;
 using BookManager.Core.Repositories;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace BookManager.Application.Queries.GetUserById
 {
@@ -16,13 +15,12 @@ namespace BookManager.Application.Queries.GetUserById
         public async Task<ResultViewModel<UserViewModel>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             var user = await _repository.GetById(request.Id);
-            var model = UserViewModel.FromEntity(user);
-
-            if (model == null)
+            
+            if (user == null)
             {
-                return ResultViewModel<UserViewModel>.Error("Usuário não encontrado.");
+                return ResultViewModel<UserViewModel>.Error("User not found");
             }
-
+            var model = UserViewModel.FromEntity(user);
             return ResultViewModel<UserViewModel>.Success(model);
         }
     }

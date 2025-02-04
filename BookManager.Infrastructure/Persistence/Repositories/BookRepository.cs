@@ -38,7 +38,19 @@ namespace BookManager.Infrastructure.Persistence.Repositories
 
         public async Task<Book?> GetById(int id)
         {
-            return await _context.Books.SingleOrDefaultAsync(b => b.Id == id);
+            if (id == 0)
+            {
+                throw new ArgumentException("Book ID cannot be null or zero.");
+            }
+
+            var book = await _context.Books.SingleOrDefaultAsync(b => b.Id == id);
+
+            if (book is null)
+            {
+                throw new ArgumentException("Book not found");
+            }
+
+            return book;
         }
 
         public async Task Update(Book book)

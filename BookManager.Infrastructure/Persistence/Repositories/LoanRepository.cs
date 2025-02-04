@@ -27,7 +27,7 @@ namespace BookManager.Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Loan>> GetAll()
+        public async Task<List<Loan>> GetAll()
         {
             var loans = await _context.Loans.ToListAsync();
             return loans;
@@ -45,10 +45,11 @@ namespace BookManager.Infrastructure.Persistence.Repositories
             
             if (existingLoan is null)
             {
-               
+               Console.WriteLine("Loan not found");
             }
-                await _context.SaveChangesAsync();
-            }
+
+            await _context.SaveChangesAsync();
         }
     }
+}
 

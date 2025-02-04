@@ -21,7 +21,14 @@ namespace BookManager.Infrastructure.Persistence.Repositories
 
         public async Task<User?> GetById(int id)
         {
-            return await _context.Users.SingleOrDefaultAsync(x => x.Id == id);
+           var user = await _context.Users.SingleOrDefaultAsync(x => x.Id == id);
+
+            if(user == null)
+            {
+                Console.WriteLine("User not found");
+            }
+
+            return user;
         }
     }
 }
