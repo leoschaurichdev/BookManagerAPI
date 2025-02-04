@@ -27,13 +27,10 @@
 
         public T? Data { get; private set; }
 
-        public static ResultViewModel<T> Success(T data)
+        public static new ResultViewModel<T> Success(T data)
             => new(data);
 
-        //public static ResultViewModel<T> Error(string message)
-        //    => new(default, false, message);
-
-        public static ResultViewModel<T> Error(string message = "An error occurred")
-    => new(default, false, message);
+        public static new ResultViewModel<T> Error(string message)
+            => new(default, false, message);
     }
 }

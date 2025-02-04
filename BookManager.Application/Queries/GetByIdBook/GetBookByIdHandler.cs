@@ -14,15 +14,24 @@ namespace BookManager.Application.Queries.GetByIdBook
 
         public async Task<ResultViewModel<BookViewModel>> Handle(GetBookByIdQuery request, CancellationToken cancellationToken)
         {
-            var book = await _repository.GetById(request.Id);
-            var model = BookViewModel.FromEntity(book);
-
-            if (book == null)
+            try
             {
-                return ResultViewModel<BookViewModel>.Error("Book not found");
-            }
+                var book = await _repository.GetById(request.Id);
 
-            return ResultViewModel<BookViewModel>.Success(model);
+                if (book == null)
+                {
+                    return ResultViewModel<BookViewModel>.Error("Book not found");
+                }
+
+                var model = BookViewModel.FromEntity(book);
+
+                return ResultViewModel<BookViewModel>.Success(model);
+            }
+            catch (Exception ex)
+            {
+                return ResultViewModel<BookViewModel>.Error(ex.Message);
+
+            }
         }
     }
 }

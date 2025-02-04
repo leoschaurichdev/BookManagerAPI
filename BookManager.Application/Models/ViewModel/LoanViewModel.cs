@@ -16,6 +16,6 @@ namespace BookManager.Application.Models.ViewModel
         public DateTime LoanDate { get; set; }
 
         public static LoanViewModel FromEntity(Loan entity)
-            => new(entity.BookId, entity.UserId);
+            => new(entity.UserId, entity.BookId);
     }
 }

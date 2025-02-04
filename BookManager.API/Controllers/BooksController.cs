@@ -24,8 +24,7 @@ namespace BookManager.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {  
-            //var result = _service.GetAll();
-
+         
             var query = new GetAllBookQuery();
             var result = await _mediator.Send(query);
             return Ok(result);
@@ -35,15 +34,14 @@ namespace BookManager.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            
             var result = await _mediator.Send(new GetBookByIdQuery(id));
 
-            if(!result.IsSuccess)
+            if (!result.IsSuccess)
             {
                 return BadRequest(result.Message);
             }
 
-            return Ok(result);
+            return Ok(result.Data);
         }
 
         //POST api/books

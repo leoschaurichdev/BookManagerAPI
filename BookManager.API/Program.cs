@@ -1,17 +1,7 @@
 using BookManager.Application;
 using BookManager.Infrastructure;
-using BookManager.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-//builder.Services.AddDbContext<BookManagerDbContext>(o => o.UseInMemoryDatabase("BookManagerDB"));
-
-//var connectionString = builder.Configuration.GetConnectionString("BookManagerDB");
-
-//builder.Services.AddDbContext<BookManagerDbContext>(o => o.UseSqlServer(connectionString));
 
 builder.Services.AddApplication()
     .AddInfrastructure(builder.Configuration);
