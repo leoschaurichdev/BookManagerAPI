@@ -12,8 +12,8 @@
         {
             return situation switch
             {
-                LoanSituation.Current => "O emprestimo está em dia",
-                LoanSituation.Delayed => "O emprestimo está com a devolução atrasada",
+                LoanSituation.Current => "The loan is in progress",
+                LoanSituation.Delayed => "The loan is late",
                 _ => "Unknown"
             };
         }
