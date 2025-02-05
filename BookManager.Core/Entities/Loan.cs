@@ -21,7 +21,6 @@ namespace BookManager.Core.Entities
         {
             
         }
-        public int LoanId { get; private set; }
         public int UserId { get; private set; }
         public int BookId { get; private set; }
         public User User { get; private set; }

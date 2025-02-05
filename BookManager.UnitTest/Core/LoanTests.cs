@@ -15,7 +15,7 @@ namespace BookManager.UnitTests.Core
 
             // Act
             var userId = loan.UserId;
-            var loanId = loan.LoanId;
+            var loanId = loan.Id;
 
             // Assert
             Assert.Equal(user.Id, userId);
