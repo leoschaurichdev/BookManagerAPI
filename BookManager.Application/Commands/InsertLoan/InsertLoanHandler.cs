@@ -35,8 +35,9 @@ namespace BookManager.Application.Commands.InsertLoan
             {
                 return ResultViewModel<int>.Error("Book is deleted");
             }
-
             Loan loan = new Loan(user, book, request.LoanDate);
+            string userName = user.Name;
+            string bookTitle = book.Title;
 
             await _loanRepository.Add(loan);
 
