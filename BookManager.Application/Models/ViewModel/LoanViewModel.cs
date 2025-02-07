@@ -12,7 +12,7 @@ namespace BookManager.Application.Models.ViewModel
             UserName = userName;
             IdBook = idBook;
             BookTitle = bookTitle;
-            LoanDay = DateTime.Today;
+            LoanDay = loanDay;
             LoanSituation = loanSituation.ToDisplayString();
             LoanStatus = loanStatus.ToDisplayString();
         }

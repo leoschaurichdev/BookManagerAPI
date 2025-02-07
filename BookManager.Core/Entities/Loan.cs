@@ -14,6 +14,7 @@ namespace BookManager.Core.Entities
             LoanStatus = LoanStatus.Active;
             LoanSituation = LoanSituation.Current;
             LoanDay = DateTime.Today;
+            DevolutionDay = loanDay.AddDays(7);
 
         }
 
@@ -26,6 +27,7 @@ namespace BookManager.Core.Entities
         public User User { get; private set; }
         public Book Book { get; private set; }
         public DateTime LoanDay { get; private set; }
+        public DateTime DevolutionDay { get; private set; }
         public LoanStatus LoanStatus { get; private set; }
         public LoanSituation LoanSituation { get; private set; }
         public void FinishLoan()
@@ -36,8 +38,12 @@ namespace BookManager.Core.Entities
 
         public void LateLoan()
         {
+            
             LoanSituation = LoanSituation.Delayed;
+            
         }
+
+
        
     }
 }

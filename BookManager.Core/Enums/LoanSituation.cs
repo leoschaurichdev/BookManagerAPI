@@ -12,7 +12,7 @@
         {
             return situation switch
             {
-                LoanSituation.Current => "The loan is in progress",
+                LoanSituation.Current => "the loan is not late",
                 LoanSituation.Delayed => "The loan is late",
                 _ => "Unknown"
             };

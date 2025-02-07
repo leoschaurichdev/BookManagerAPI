@@ -19,15 +19,14 @@ namespace BookManager.Application.Commands.UpdateLateLoan
 
             if (loan is null)
             {
-                return ResultViewModel.Error("Empréstimo não encontrado");
+                return ResultViewModel.Error("Loan not found");
             }
 
-            if ((DateTime.Now - loan.LoanDay).TotalDays < 7)
+            if (DateTime.Now > loan.DevolutionDay)
             {
-                return ResultViewModel.Success();
+                loan.LateLoan();
             }
-
-            loan.LateLoan();
+              
             loan.UpdateAt = DateTime.Now;
             await _repository.UpdateLateLoan(loan);
 
