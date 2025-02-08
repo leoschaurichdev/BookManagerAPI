@@ -23,7 +23,7 @@ namespace BookManager.Application.Commands.DeleteBook
             {
                 return ResultViewModel.Error("Livro não encontrado");
             }
-
+            book.UpdateAt = DateTime.Now;
             book.SetAsDeleted();
 
             await _repository.Delete(book.Id);
