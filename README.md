@@ -60,11 +60,19 @@ Após atualização (dados apresentados no banco de dados)
 -GET ALL (SÓ APRESENTA OS EMPRESTIMOS QUE ESTÃO ATIVOS)
 ![Captura de tela 2025-02-08 144359](https://github.com/user-attachments/assets/889a4b8e-2ea8-4958-9282-a459fd3a0aac)
 -POST
+Cadastro de um empréstimo
+![Captura de tela 2025-02-08 145123](https://github.com/user-attachments/assets/9fe20a3a-8081-44f3-b2f5-1b488488fd6d)
+
+Salvo no banco de dados (observar que o sistema já seta o dia de devolução que são em 7 dias)
+![Captura de tela 2025-02-08 145204](https://github.com/user-attachments/assets/00f5c3d2-dd2c-4e9d-a682-1b4a6eed3d6e)
 
 -FINISHLOAN (FAZ A ENTREGA DO EMPRESTIMO)
 -LATELOAN (FAZ O STATUS DA SITUAÇÃO FICAR EM DELAY)
 
 # USER
 
--GET (Traz todos os usuarios cadastrados)
+-GET (Traz os usuarios por Id)
+![Captura de tela 2025-02-08 144808](https://github.com/user-attachments/assets/ebd2a139-76c7-4445-9fac-a990baffe02e)
+
 -POST (Cadastro de usuarios)
+![Captura de tela 2025-02-08 145036](https://github.com/user-attachments/assets/e87f76d8-3901-4231-8b8e-7ba92f730586)
