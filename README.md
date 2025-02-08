@@ -14,7 +14,7 @@ Este é um projeto WEB API para gerenciar o empréstimo de livros em uma bibliot
 ## Funcionalidades
 - [x] Criar banco de dados
 - [ ] Deixar cover funcional
-- [ ] Controller Loan para visualizar todas os emprestimos em andamento
+- [X] Controller Loan para visualizar todas os emprestimos em andamento
 - [X] Validações
 - [ ] Autenticação e Autorização com JWT
 - [ ] Desenvolver interface do usuário
